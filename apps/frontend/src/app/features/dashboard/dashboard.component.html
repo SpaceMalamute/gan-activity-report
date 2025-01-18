@@ -1,1 +1,9 @@
-<p>dashboard works!</p>
+<nav mat-tab-nav-bar [tabPanel]="tabPanel">
+    @for (link of links(); track link) {
+    <button mat-tab-link [routerLink]="link.route" (click)="activeLink.set(link)" [active]="activeLink() === link">
+        {{link.title}} </button>
+    }
+</nav>
+<mat-tab-nav-panel #tabPanel>
+    <router-outlet></router-outlet>
+</mat-tab-nav-panel>

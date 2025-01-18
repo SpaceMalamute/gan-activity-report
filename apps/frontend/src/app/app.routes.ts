@@ -8,9 +8,9 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'dashboard',
-    loadComponent: () =>
-      import('./features/dashboard/dashboard.component').then(
-        (c) => c.DashboardComponent
+    loadChildren: () =>
+      import('./features/dashboard/dashboard.routes').then(
+        (r) => r.DASHBOARD_ROUTES
       ),
   },
 ];

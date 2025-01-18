@@ -1,9 +1,30 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  inject,
+  Signal,
+  signal,
+  WritableSignal,
+} from '@angular/core';
+import { MatTabsModule } from '@angular/material/tabs';
+import {
+  ActivatedRoute,
+  Router,
+  RouterModule,
+  RoutesRecognized,
+} from '@angular/router';
+import { TabRoute } from '../../core/interfaces/tab-route.interface';
+import { DASHBOARD_TABS } from './constants/dashboard-tabs.constants';
+
+const imports = [RouterModule, MatTabsModule];
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [...imports],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
-export class DashboardComponent {}
+export class DashboardComponent {
+  protected readonly links: Signal<Array<TabRoute>> = signal(DASHBOARD_TABS);
+
+  protected activeLink: WritableSignal<TabRoute> = signal(this.links()[0]);
+}
