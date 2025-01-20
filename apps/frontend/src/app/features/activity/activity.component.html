@@ -1,0 +1,24 @@
+<mat-toolbar class="activity-toolbar">
+  <span>{{ currentDate() | date: 'MMMM YYYY' }}</span>
+  <span class="spacer"></span>
+  @let selected = actitityStore.selected();
+  @if(selected){
+  <span>Selected: {{selected.date | date }}</span>
+  @if (!!actitityStore.selected()?.activities) {
+  @let selectedActivity = actitityStore.selected()!.activities[0];
+  <mat-chip-listbox>
+    @for (type of activityType | keyvalue; track type.value) {
+    <mat-chip-option [selected]="selectedActivity?.type === type.value"
+      (selectionChange)="updateActivity(type.value, selectedActivity, $event)" [disabled]="actitityStore.loading()">
+      {{type.key}}
+    </mat-chip-option>
+    }
+  </mat-chip-listbox>
+  }
+  }
+</mat-toolbar>
+@if(actitityStore.loading()){
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+<app-calendar class="calendar" [currentDate]="currentDate()" [activities]="actitityStore.activities()"
+  (select)="selectActivity($event)"></app-calendar>

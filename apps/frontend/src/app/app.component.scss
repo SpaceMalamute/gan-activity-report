@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+
+  .main-nav {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    .nav-btn {
+      &.active {
+        background-color: var(--mat-sys-secondary-container);
+      }
+    }
+  }
+
+  .main-content {
+    flex: 1 1 auto;
+    overflow: auto;
+  }
+}

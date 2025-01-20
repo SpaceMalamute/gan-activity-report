@@ -1,5 +1,7 @@
 export interface Agent {
-  id: number;
+  id: string;
   name: string;
   email: string;
 }
+
+export type CreateAgent = Omit<Agent, 'id'>;

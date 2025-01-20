@@ -1,3 +1,7 @@
+<mat-toolbar class="agent-toolbar">
+    <span class="spacer"></span>
+    <button mat-flat-button color="primary" (click)="openCreateDialog()">Create agent</button>
+</mat-toolbar>
 @if(store.loading()){
 <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 } @else {

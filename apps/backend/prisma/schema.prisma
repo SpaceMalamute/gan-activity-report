@@ -18,4 +18,18 @@ model Agent {
   id   String @id @default(uuid())
   email String  @unique
   name  String?
+  activities Activity[]
+}
+
+enum ActivityType {
+  mission
+  vacation
+}
+
+model Activity {
+   id   String @id @default(uuid())
+   agent Agent @relation(fields: [agentId], references: [id])
+   agentId String
+   date DateTime
+   type ActivityType
 }

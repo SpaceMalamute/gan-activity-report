@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Create agent</h2>
+<mat-dialog-content>
+    <mat-form-field class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="agent().name" />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Email address</mat-label>
+        <input matInput [(ngModel)]="agent().email" />
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="agent()" cdkFocusInitial>Create</button>
+</mat-dialog-actions>

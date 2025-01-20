@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { Agent, CreateAgent } from '../../models/agent.model';
 import { BaseAPIService } from '../base.api.service';
-import { Agent } from '../../models/agent.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +23,7 @@ export class AgentAPIService extends BaseAPIService {
       .pipe(map((response) => response));
   }
 
-  public createAgent(agent: Agent): Observable<Agent> {
+  public createAgent(agent: CreateAgent): Observable<Agent> {
     return this.http
       .post<Agent>(this.API_URL, agent)
       .pipe(map((response) => response));

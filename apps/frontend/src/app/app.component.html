@@ -1,1 +1,30 @@
-<router-outlet></router-outlet>
+<mat-toolbar class="main-nav">
+    <span>GAN - Activity Report</span>
+    <span class="spacer"></span>
+    @if(!agentsStore.loading()) {
+    <button mat-button [matMenuTriggerFor]="menu">
+        {{agentsStore.currentAgent()?.name ?? 'Select agent'}}
+        <mat-icon>perm_identity</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        @for (agent of agentsStore.agents(); track agent.id) {
+        <button mat-menu-item (click)="logInAs(agent)">{{agent.name}}</button>
+        }
+        @if(agentsStore.currentAgent()) {
+        <button mat-menu-item (click)="logInAs(undefined)">Log out</button>
+        }
+    </mat-menu>
+
+    <button class="nav-btn" mat-raised-button routerLink="dashboard" routerLinkActive="active">
+        <mat-icon>dashboard</mat-icon>
+        Dashboard
+    </button>
+    <button class="nav-btn" mat-raised-button routerLink="activity" routerLinkActive="active">
+        <mat-icon>article</mat-icon>
+        Activity report
+    </button>
+    }
+</mat-toolbar>
+<main class="main-content">
+    <router-outlet></router-outlet>
+</main>

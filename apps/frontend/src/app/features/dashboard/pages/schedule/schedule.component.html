@@ -1,0 +1,5 @@
+@if(store.loading()){
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+<app-calendar class="calendar" [currentDate]="currentDate()" [activities]="store.activities()" [displayAgent]="true"
+    [readonly]="true"></app-calendar>
