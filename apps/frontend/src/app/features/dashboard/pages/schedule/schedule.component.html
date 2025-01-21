@@ -1,3 +1,12 @@
+<mat-toolbar class="activity-toolbar">
+    <button mat-icon-button class="prev-date" (click)="prevMonth()">
+        <mat-icon>chevron_left</mat-icon>
+    </button>
+    <span class="date">{{ currentDate() | date: 'MMMM YYYY' }}</span>
+    <button mat-icon-button class="next-date" (click)="nextMonth()">
+        <mat-icon>chevron_right</mat-icon>
+    </button>
+</mat-toolbar>
 @if(store.loading()){
 <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 }

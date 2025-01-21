@@ -1,5 +1,7 @@
+import { DatePipe } from '@angular/common';
 import {
   Component,
+  effect,
   inject,
   OnInit,
   signal,
@@ -22,6 +24,7 @@ const imports = [
   MatButtonModule,
   MatChipsModule,
   MatProgressBarModule,
+  DatePipe,
 ];
 
 const providers = [ScheduleStore];
@@ -38,8 +41,23 @@ export class ScheduleComponent implements OnInit {
 
   protected currentDate: WritableSignal<Date> = signal(moment.utc().toDate());
 
+  public constructor() {
+    effect(() => {
+      this.store.fetchActivities({ date: this.currentDate() });
+    });
+  }
+
   public ngOnInit(): void {
     this.store.init(this.currentDate());
-    this.store.fetchActivities({ date: this.currentDate() });
+  }
+
+  protected prevMonth(): void {
+    this.currentDate.update((date) =>
+      moment.utc(date).subtract(1, 'M').toDate(),
+    );
+  }
+
+  protected nextMonth(): void {
+    this.currentDate.update((date) => moment.utc(date).add(1, 'M').toDate());
   }
 }

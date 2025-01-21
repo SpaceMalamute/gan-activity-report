@@ -72,6 +72,16 @@ export class ActivityComponent implements OnInit {
     this.actitityStore.init(this.currentDate());
   }
 
+  protected prevMonth(): void {
+    this.currentDate.update((date) =>
+      moment.utc(date).subtract(1, 'M').toDate(),
+    );
+  }
+
+  protected nextMonth(): void {
+    this.currentDate.update((date) => moment.utc(date).add(1, 'M').toDate());
+  }
+
   protected selectActivity(activity: SelectedDateActivities) {
     this.actitityStore.setSelected(activity);
   }
