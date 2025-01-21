@@ -27,9 +27,10 @@ const initialState: ReportState = {
   error: '',
 };
 
-const REPORT_STATE = new InjectionToken<ReportState>('ReportState', {
-  factory: () => initialState,
-});
+const REPORT_STATE: InjectionToken<ReportState> =
+  new InjectionToken<ReportState>('ReportState', {
+    factory: () => initialState,
+  });
 
 export const ActivityStore = signalStore(
   withState(() => inject(REPORT_STATE)),

@@ -7,45 +7,81 @@
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-auto-rows: minmax(0, 1fr);
-    gap: 0.5rem 0;
 
     .weekday {
       grid-row: 1;
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: gray;
+      background-color: var(--mat-sys-background);
     }
 
-    .activity {
+    .activities {
       grid-row: span 3;
       position: relative;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: lightgreen;
+      background-color: var(--mat-sys-on-secondary);
+      border: solid 1px var(--mat-sys-background);
 
       &.holiday {
-        background-color: lightblue;
+        background-color: var(--mat-sys-background);
       }
 
       &.disabled {
-        background-color: lightgray;
+        background-color: var(--background-color);
+      }
+
+      &:not(.selected) {
+        opacity: 0.8;
       }
 
       &.selected {
-        background-color: lightcoral;
+        border: solid 2px var(--mat-sys-primary);
       }
 
       .date-container {
         position: absolute;
-        top: 0.25rem;
-        left: 0.25rem;
+        top: 0.5rem;
+        left: 0.5rem;
       }
 
       .activity-container {
-        background-color: red;
+        margin-top: 2rem;
         width: 100%;
+        font-size: small;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+
+        .activity {
+          border-radius: 0.25rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: row;
+          margin: 0 0.25rem;
+          padding: 0.25rem;
+
+          &:nth-child(1) {
+            background-color: #c05b5b;
+          }
+
+          &:nth-child(2) {
+            background-color: #5bc0de;
+          }
+
+          &:nth-child(3) {
+            background-color: #5bde87;
+          }
+
+          .agent {
+          }
+
+          .type {
+            font-weight: 400;
+            margin-left: 0.5rem;
+          }
+        }
       }
     }
   }

@@ -5,7 +5,7 @@
     @let date = day[1].day;
     @let activities = day[1].activities;
     @let selected = this.selected()?.date === date.date;
-    <div class="activity" [class.disabled]="!date.currentMonth" [class.holiday]="date.holiday"
+    <div class="activities" [class.disabled]="!date.currentMonth" [class.holiday]="date.holiday"
         [class.selected]="selected" (click)="selectDate(date, activities)" (keydown)="selectDate(date, activities)"
         tabindex="0">
         <div class="date-container">
@@ -14,11 +14,11 @@
         <div class="activity-container">
             @for (activity of activities; track activity.id) {
             @if(date.currentMonth) {
-            <div>
+            <div class="activity">
                 @if(displayAgent()){
-                {{ activity?.agentName }}
+                <span class="agent">{{ activity?.agentName }}</span>
                 }
-                {{ activity?.type }}
+                <span class="type">{{ activity?.type }}</span>
             </div>
             }
             }

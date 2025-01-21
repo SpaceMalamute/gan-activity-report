@@ -1,9 +1,9 @@
 <mat-toolbar class="activity-toolbar">
-  <span>{{ currentDate() | date: 'MMMM YYYY' }}</span>
+  <span class="date">{{ currentDate() | date: 'MMMM YYYY' }}</span>
   <span class="spacer"></span>
   @let selected = actitityStore.selected();
   @if(selected){
-  <span>Selected: {{selected.date | date }}</span>
+  <span class="selected">Selected: {{selected.date | date }}</span>
   @if (!!actitityStore.selected()?.activities) {
   @let selectedActivity = actitityStore.selected()!.activities[0];
   <mat-chip-listbox>

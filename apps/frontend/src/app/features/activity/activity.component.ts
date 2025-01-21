@@ -48,7 +48,7 @@ const providers = [ActivityStore];
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActivityComponent implements OnInit {
-  protected readonly activityType = ActivityType;
+  protected readonly activityType: typeof ActivityType = ActivityType;
 
   protected readonly actitityStore: ActivityStore = inject(ActivityStore);
 
